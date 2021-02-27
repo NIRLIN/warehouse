@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.gues.mapper.CargoMapper">
+    <select id="selectAllCargo" resultType="Cargo">
+        select id,name,supplier_id,price,comment from cargo;
+    </select>
+    <select id="selectCargoById" resultType="Cargo">
+        select id,name,supplier_id,price,comment from cargo where id=#{id};
+    </select>
+    <insert id="insertCargo" parameterType="Cargo">
+        insert into cargo (id, name, supplier_id, price, comment)
+        values (#{id}, #{name}, #{supplierId} , #{price},  #{comment});
+    </insert>
+    <update id="updateCargoById" parameterType="Cargo">
+        update cargo
+        set  name=#{name},supplier_id=#{supplierId}, price=#{price},  comment=#{comment}
+        where id=#{id};
+    </update>
+    <delete id="deleteCargoById">
+        delete from cargo where id=#{id};
+    </delete>
+    <select id="selectCargoBySupplierId" resultType="Cargo">
+        select id,name,supplier_id,comment from cargo where supplier_id=#{supplierId};
+    </select>
+
+</mapper>

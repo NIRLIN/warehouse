@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>仓库管理系统</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <meta content="Themesbrand" name="author"/>
+
+    <!-- App favicon -->
+    <link href="assets/images/favicon.ico" rel="shortcut icon">
+
+    <link href="assets/plugins/morris/morris.css" rel="stylesheet">
+    <link href="assets/plugins/chartist/css/chartist.min.css" rel="stylesheet">
+    <link href="assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet">
+    <link href="assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- App css -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body>
+
+<!-- Top Bar Start -->
+<div class="topbar">
+
+    <!-- LOGO -->
+    <div class="topbar-left">
+        <a class="logo" href="index.html">
+                    <span>
+                        <img alt="logo-small" class="logo-sm" src="assets/images/logo-sm.png">
+                    </span>
+            <span>
+                        <img alt="logo-large" class="logo-lg" src="assets/images/logo.png">
+                    </span>
+        </a>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar-custom">
+
+
+        <ul class="list-unstyled topbar-nav float-right mb-0">
+
+
+            <li class="hidden-sm">
+                <a class="nav-link waves-effect waves-light" href="javascript:void(0);" id="btn-fullscreen">
+                    <i class="mdi mdi-fullscreen nav-icon"></i>
+                </a>
+            </li>
+
+            <li class="dropdown">
+                <a aria-expanded="false" aria-haspopup="false" class="nav-link dropdown-toggle waves-effect waves-light nav-user"
+                   data-toggle="dropdown"
+                   href="#" role="button">
+                    <img alt="profile-user" class="rounded-circle" src="assets/images/users/user-1.jpg"/>
+                    <span class="ml-1 nav-user-name hidden-sm" th:text="${session.name}">用户名 <i class="mdi mdi-chevron-down"></i> </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="userChangeInfo.html"><i class="dripicons-user text-muted mr-2"></i> 个人信息</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="noLogin.html"><i class="dripicons-exit text-muted mr-2"></i> 退出</a>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="list-unstyled topbar-nav mb-0">
+
+            <li>
+                <button class="button-menu-mobile nav-link waves-effect waves-light">
+                    <i class="mdi mdi-menu nav-icon"></i>
+                </button>
+            </li>
+
+
+        </ul>
+
+    </nav>
+    <!-- end navbar-->
+</div>
+<!-- Top Bar End -->
+
+<div class="page-wrapper">
+    <!-- Left Sidenav -->
+    <div class="left-sidenav">
+        <ul class="metismenu left-sidenav-menu" id="side-nav">
+
+            <li class="menu-title">Main</li>
+
+            <li>
+                <a href="index.html">
+                    <i class="mdi mdi-speedometer"></i><span>主页</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript: void(0);"><i class="mdi mdi-bell-ring"></i><span>通知管理</span><span
+                        class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <ul aria-expanded="false" class="nav-second-level">
+                    <li><a href="all-notice.html">所有通知</a></li>
+                    <li><a href="add-notice.html">添加通知</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript: void(0);"><i class="mdi mdi-castle"></i><span>仓库管理</span><span
+                        class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <ul aria-expanded="false" class="nav-second-level">
+                    <li><a href="all-warehouse.html">所有仓库</a></li>
+                    <li><a href="add-warehouse.html">添加仓库</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript: void(0);"><i class="mdi mdi-nature-people"></i><span>供应商管理</span><span
+                        class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <ul aria-expanded="false" class="nav-second-level">
+                    <li><a href="all-supplier.html">所有供应商</a></li>
+                    <li><a href="add-supplier.html">添加供应商</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript: void(0);"><i class="mdi mdi-pokeball"></i><span>客户管理</span><span
+                        class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <ul aria-expanded="false" class="nav-second-level">
+                    <li><a href="all-client.html">所有客户</a></li>
+                    <li><a href="add-client.html">添加客户</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript: void(0);"><i class="mdi mdi-basket"></i><span>商品管理</span><span
+                        class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <ul aria-expanded="false" class="nav-second-level">
+                    <li><a href="all-cargo.html">所有商品</a></li>
+                    <li><a href="toAddCargoPage.html">添加商品</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript: void(0);"><i class="mdi mdi-account-multiple"></i><span>员工管理</span><span
+                        class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <ul aria-expanded="false" class="nav-second-level">
+                    <li><a href="all-employee.html">所有员工</a></li>
+                    <li><a href="add-employee.html">添加员工</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript: void(0);"><i
+                        class="mdi mdi-format-horizontal-align-right"></i><span>入库管理</span><span class="menu-arrow"><i
+                        class="mdi mdi-chevron-right"></i></span></a>
+                <ul aria-expanded="false" class="nav-second-level">
+                    <li><a href="all-in-ware.html">入库记录</a></li>
+                    <li><a href="add-in-ware.html">商品入库</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript: void(0);"><i
+                        class="mdi mdi-format-horizontal-align-left"></i><span>出库管理</span><span class="menu-arrow"><i
+                        class="mdi mdi-chevron-right"></i></span></a>
+                <ul aria-expanded="false" class="nav-second-level">
+                    <li><a href="all-out-ware.html">出库记录</a></li>
+                    <li><a href="add-out-ware.html">商品出库</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+    <!-- end left-sidenav-->
+
+    <!-- Page Content-->
+    <div class="page-content">
+
+        <div class="container-fluid">
+
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-right">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">仓库管理系统</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">入库管理</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">入库记录</a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">入库记录</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="pb-3 mt-0">出库记录</h5>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>流水编号</th>
+                                        <th>商品id</th>
+                                        <th>仓库id</th>
+                                        <th>操作方式</th>
+                                        <th>货物数量</th>
+                                        <th>货物单价</th>
+                                        <th>货物总价</th>
+                                        <th>操作时间</th>
+                                        <th>操作</th>
+
+
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr th:each="record:${records}">
+                                        <td th:text="${record.id}">流水编号</td>
+                                        <td th:text="${record.cargoId}">商品id</td>
+                                        <td th:text="${record.entrepotId}">仓库id</td>
+                                        <td th:text="${record.operation}">操作方式</td>
+                                        <td th:text="${record.number}">货物数量</td>
+                                        <td th:text="${record.price}">货物单价</td>
+                                        <td th:text="${record.sumPrice}">货物总价</td>
+                                        <td th:text="${#dates.format(record.createTime, 'yyyy-MM-dd HH:mm')}">操作时间</td>
+                                        <td>
+<!--                                            <a class="" href=""><i class="fas fa-trash-alt mr-2 font-12"></i></a>-->
+                                            <a class="" th:href="@{'/lookRecordInWare.html?id='+${record.id}}"><i class="mdi mdi-eye mr-2 font-12"></i></a>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end row-->
+
+
+            <!--end row-->
+
+
+        </div><!-- container -->
+
+        <footer class="footer text-center text-sm-left">
+            © 2019-2020 蒹葭 <span class="text-muted d-none d-sm-inline-block float-right">Crafted with <i
+                class="mdi mdi-heart text-danger"></i> by reserved</span>
+        </footer>
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+
+
+<!-- jQuery  -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/metisMenu.min.js"></script>
+<script src="assets/js/waves.min.js"></script>
+<script src="assets/js/jquery.slimscroll.min.js"></script>
+
+<script src="assets/plugins/chartist/js/chartist.min.js"></script>
+<script src="assets/plugins/chartist/js/chartist-plugin-tooltip.min.js"></script>
+<script src="assets/plugins/morris/morris.min.js"></script>
+<script src="assets/plugins/raphael/raphael-min.js"></script>
+<script src="assets/plugins/peity-chart/jquery.peity.min.js"></script>
+<script src="assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+<script src="assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+
+<script src="assets/pages/jquery.dashboard2.init.js"></script>
+<!-- App js -->
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>

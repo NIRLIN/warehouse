@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.gues.mapper.UserMapper">
+    <select id="selectAllUser" resultType="User">
+        select id,job_no,password,role,name,phone,work,sex,birthday,nation from user where role='0';
+    </select>
+
+    <select id="selectUserById" resultType="User">
+        select id,job_no,password,role,name,phone,work,sex,birthday,nation from user where role='0' and id=#{id};
+    </select>
+
+    <insert id="insertUser" parameterType="User">
+        insert into user (id, job_no, password, name, phone, work, sex, birthday, nation)
+        values (#{id}, #{jobNo}, #{password}, #{name}, #{phone}, #{work}, #{sex}, #{birthday}, #{nation});
+    </insert>
+
+
+    <update id="updateUserById" parameterType="User">
+        update user
+        set   job_no=#{jobNo}, password=#{password}, name=#{name}, phone=#{phone}, work=#{work}, sex=#{sex}, birthday=#{birthday}, nation=#{nation}
+        where id=#{id};
+
+    </update>
+
+    <delete id="deleteUserById">
+        delete from user where id=#{id} and role='0';
+    </delete>
+    <select id="userLogin" resultType="User">
+        select count(*) from user where role='0' and job_no=#{jobNo} and password=#{password};
+    </select>
+    <select id="adminLogin" resultType="User">
+        select count(*) from user where role='1' and job_no=#{jobNo} and password=#{password};
+    </select>
+    <select id="loginFunction" resultType="User">
+        select id,job_no,password,role,name,phone,work,sex,birthday,nation from user where job_no=#{jobNo} and password=#{password};
+    </select>
+</mapper>

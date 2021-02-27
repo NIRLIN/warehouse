@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.gues.mapper.EntrepotMapper">
+    <select id="selectAllEntrepot" resultType="Entrepot">
+        select id,name,max,number,create_time
+        from entrepot;
+    </select>
+
+    <select id="selectEntrepotById" resultType="Entrepot">
+        select id,name,max,number,create_time
+        from entrepot where id=#{id};
+    </select>
+
+    <insert id="insertEntrepot" parameterType="Entrepot">
+        insert into entrepot (id, name, max, number, create_time)
+        values (#{id}, #{name}, #{max}, #{number}, #{createTime});
+    </insert>
+
+
+    <update id="updateEntrepotById" parameterType="Entrepot">
+        update entrepot
+        set  name=#{name}, max=#{max}, number=#{number}, create_time=#{createTime}
+        where id=#{id};
+    </update>
+
+    <delete id="deleteEntrepotById">
+        delete from entrepot where id=#{id};
+    </delete>
+</mapper>

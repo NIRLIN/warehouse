@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.gues.mapper.SupplierMapper">
+    <select id="selectAllSupplier" resultType="Supplier">
+        select id,name,address,phone from supplier;
+    </select>
+
+    <select id="selectSupplierById" resultType="Supplier">
+        select id,name,address,phone from supplier where id=#{id};
+    </select>
+
+    <insert id="insertSupplier" parameterType="Supplier">
+        insert into supplier (id, name, address, phone)
+        values (#{id}, #{name}, #{address}, #{phone});
+    </insert>
+
+
+    <update id="updateSupplierById" parameterType="Supplier">
+            update supplier
+        set   name=#{name}, address=#{address}, phone=#{phone}
+        where id=#{id}
+    </update>
+
+    <delete id="deleteSupplierById">
+        delete from supplier where id=#{id};
+    </delete>
+</mapper>
